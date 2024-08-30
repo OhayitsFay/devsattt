@@ -1,102 +1,63 @@
-@media screen and (min-width: 800px) {
-
-    nav ul {
+/* Media Queries for larger screens */
+@media screen and (min-width: 900px) {
+    .menuLinks {
         display: flex;
-        flex-direction: row;
         justify-content: space-around;
     }
-
-    nav li {
-        flex-grow: 1;
+    .hamburger {
+        display: none; /* Show the hamburger on mobile view */
+    }
+    .home-grid section, .home-grid img {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
-    #hamburgerButton {
-        display: none;
+    .review-section .testimonial {
+        max-width: 100%;
     }
-    .grid-container div img {
-        transition: transform 0.3s ease-in-out;
-    }
-    .grid-container div img:hover {
-        transform: scale(1.05);
+}
+
+    
+
+@media screen and (min-width: 600px) {
+    .hamburgerButton {
+        display: flex; /* Hide the hamburger on desktop view */
     }
 
-    ul.menuLinks,
-    ul.menuLinks.open {
-        display: flex;
-        max-height: 50px;
+    .menulinks {
+        display: none; /* Show the nav links on desktop view */
     }
-
-    .grid-container {
-        grid-template-columns: 2fr 1fr;
-    }
-
-    .grid-container.sidebar {
-        grid-template-columns: 2fr 3fr;
-    }
-
-    .card {
-        height: 100%;
+    header img.logo {
         width: 100%;
     }
 
-    .callToAction {
-        left: 15vw;
-        top: 15vh;
-        opacity: 1;
+    #hero-img {
+        max-height: 500px;
     }
 
-    .spotlights h2{
-        display: none;
+    .home-title {
+        font-size: 32px;
     }
 
-    .spotlights {
-        grid-column: span 2;
-        grid-template-columns: repeat(3, 1fr);
+    .button-box1 a.book1 {
+        font-size: 18px;
+        padding: 15px 25px;
     }
 
-    .develop {
-        display: flex;
-        justify-content: center;
+    .home-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
-    .marker {
-        visibility: visible;
+    .home-grid section, .home-grid img {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
-    .contact {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .review-section .testimonial {
+        max-width: 100%;
     }
-    .contact div {
-        padding: 2rem;
-    }
-
-    .hidden {
-        visibility: visible;
-        height: auto;
-    }
-
-    .membership-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-    @keyframes glow-shrink {
-        50% {
-            opacity: .6;
-            width: 95%
-        }
-    }
-
-    .directory.list div {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .directory.list div p,
-    .directory.list div h2 {
-        width: 150px;
+    .cardreason{
+        max-width: 100%;
     }
 }

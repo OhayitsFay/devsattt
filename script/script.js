@@ -29,11 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hamburger menu toggle
     const hamburgerButton = document.getElementById('hamburgerButton');
     const menuLinks = document.querySelector('.menuLinks');
-    if (hamburgerButton) {
-        hamburgerButton.addEventListener('click', () => {
-            menuLinks.style.display = menuLinks.style.display === 'block' ? 'none' : 'block';
-        });
-    }
+    hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
 
     // Update year dynamically
     const yearSpan = document.getElementById('year');
