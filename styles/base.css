@@ -992,7 +992,34 @@ font-size: 1.3em;
     color: var(--secondary-color);
     text-decoration: underline;
 }
-
+.support-card {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    border: 10px solid var(--accent2-color);
+    transition: .10s;
+    box-shadow: 10px 10px 10px var(--secondary-color);
+    
+}
+.support-card a {font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: var(--accent1-color);
+    text-decoration: none;
+  }
+  
+.support-card a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+.social-card {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    border: 10px solid var(--accent2-color);
+    transition: .10s;
+    box-shadow: 10px 10px 10px var(--secondary-color);
+    
+}
 .fieldset {
     grid-column: 5/11;
     grid-row:1/5;
@@ -1191,7 +1218,9 @@ font-size: 1.3em;
         
     }
 
-    
+    .hero-box {
+        width: 100%;
+    }
     .home-grid section, .home-grid img {
         flex: 1 1 100%;
         max-width: 100%;
@@ -1231,7 +1260,8 @@ font-size: 1.3em;
     .cardreason {
         width: 100%;
         grid-row: 6/6;
-        margin: 0;
+        grid-column: 1/10;
+        margin: 30px auto;
     }
     .review-section .testimonial.review-form {
         max-width: 100%;
