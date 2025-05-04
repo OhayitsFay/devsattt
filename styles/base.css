@@ -75,7 +75,6 @@ header {
     cursor: pointer;
 }
 /* CSS rules for darkmode */
-header.dark,
 footer.dark {
     background-color: rgb(0, 50, 107);
 }
@@ -94,7 +93,7 @@ section.dark a{
     color: var(--accent2-color);
     
 }
-section.dark h2, section.dark h3{
+section.dark h2, p, section.dark h3{
     color: var(--accent1-color);
 }
 
