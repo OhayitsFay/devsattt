@@ -725,26 +725,33 @@ gap: 10px;
     font-family: "Oxygen", "Macondo";
 
 }
-#abt-background {
-    width: 100%;
-    height: 1050px;
-    margin:  50px 0;
-    grid-column: 1/11;
-    grid-row: 7/10;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    color: #fff; /* Light text color */
-    background: rgba(0, 0, 0, 0.1);
-}
 .msg {
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
-    background-size: cover;
+    width: 100%;
     margin:  50px 0;
+    position: relative;
+    height: fit-content;
+    background-image: url('../images/background.webp');/* Dark overlay for text readability */
+    background-size: cover;
     padding: 30px;
     grid-column: 1/11;
-    grid-row: 7/10;
+    grid-row: 7/9;
     text-align: left;
    
+}
+.msg::before {
+    content: ''; /* Required to create a pseudo-element */
+    position: absolute; /* Position it inside the .msg container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: 1; /* Make sure the overlay is above the background but below the text */
+}
+
+.msg * {
+    position: relative; /* Ensure text and child elements are on top of the overlay */
+    z-index: 2; /* Ensure the text is above the overlay */
 }
 .msg h2{
     font-family: 'Rock Salt', 'Bodoni Moda';
@@ -829,9 +836,6 @@ font-size: 1.3em;
   .team-member a:hover {
     text-decoration: underline;
   }
-hr {
-    display: none;
-}
  /*Services page*/
 /* Style the cards within the grid */
 .custom_services {
@@ -1196,6 +1200,7 @@ hr {
         grid-column: 1/10;
         grid-row: 1/1;
         margin: 0 auto;
+        font-size: 20px;
     }
     #plane-img {
         width: 100%;
@@ -1206,6 +1211,7 @@ hr {
         grid-column: 1/10;
         grid-row: 2/2;
         margin: 20px auto;
+        font-size: 20px;
     }
     .custom {
         width: 100%;
@@ -1246,10 +1252,6 @@ hr {
         width: 100%;
         height: fit-content;
         font-size: 15px;
-    }
-    #abt-background {
-        width: 100%;
-        height: 1200px;
     }
     .team {
         width: 100%;
@@ -1303,5 +1305,8 @@ hr {
     }
     button.prev, button.next {
         margin: 10px 0;
+    }
+    footer {
+        width: 100%;
     }
 }
