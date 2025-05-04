@@ -14,8 +14,20 @@ function showContent(contextId) {
         tab.classList.remove('active');
     });
 
-    document.getElementById(contextId).classList.add('active');
-    document.querySelector(`button[onclick="showContent('${contextId}')"]`).classList.add('active');
+    const targetContext = document.getElementById(contextId);
+    const targetButton = document.querySelector(`button[onclick="showContent('${contextId}')"]`);
+
+    if (targetContext) {
+        targetContext.classList.add('active');
+    } else {
+        console.warn(`No element with id="${contextId}" found.`);
+    }
+
+    if (targetButton) {
+        targetButton.classList.add('active');
+    } else {
+        console.warn(`No button with onclick="showContent('${contextId}')" found.`);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,13 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
             closeBannerButton.parentElement.style.display = 'none';
         });
     }
-    
-    // Hamburger menu toggle
-    const hamburgerButton = document.getElementById('hamburgerButton');
-    const menuLinks = document.querySelector('.menuLinks');
+    const hamburger = document.getElementById('hamburgerButton');
+    const nav = document.getElementById('menuLinks');
+
     hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
+    nav.classList.toggle('active');
+    });
 
     // Update year dynamically
     const yearSpan = document.getElementById('year');
@@ -39,5 +50,4 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 });
-
 

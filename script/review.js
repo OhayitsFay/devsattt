@@ -1,4 +1,4 @@
-const reviews = [
+let reviews = JSON.parse(localStorage.getItem('reviews')) ||  [
     {
         text: "If you are looking for a reliable clearing agent in Nigeria. Look no further. I was so impressed with the service I received.",
         name: "Mr Festus Adetunji",
@@ -60,6 +60,7 @@ function nextReview() {
 
 function generateDots() {
     const dotsContainer = document.getElementById('dots');
+    dotsContainer.innerHTML = ''; // Clear existing dots
     reviews.forEach((_, index) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
@@ -78,4 +79,33 @@ function updateDots(index) {
         dot.classList.toggle('active', i === index);
     });
 }
+
+document.getElementById('review-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const rating = parseInt(document.getElementById('rating').value);
+    const comment = document.getElementById('comment').value.trim();
+
+    if (name && company && rating && comment) {
+        const newReview = {
+            text: comment,
+            name: name,
+            rating: rating,
+            company: company
+        };
+
+        reviews.push(newReview);
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+        currentReviewIndex = reviews.length - 1;
+        displayReview(currentReviewIndex);
+        generateDots(); // Rebuild the dots
+        updateDots(currentReviewIndex);
+
+        // Reset form
+        document.getElementById('review-form').reset();
+    }
+    
+});
 
