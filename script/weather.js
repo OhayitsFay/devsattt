@@ -9,6 +9,8 @@ const tempRangeElements = document.querySelectorAll(".temp-range");
 const baseURL = "https://api.openweathermap.org/data/2.5/";
 const parameters = "?lat=6.60&lon=3.35&units=imperial&appid=b346512c4fc62f254f88e918d6b4cc21";
 
+const hasWeatherWidget = currentTemp && weather && captionDesc && humidity && chill;
+
 async function apiFetch(url) 
 {
     try
@@ -33,6 +35,10 @@ async function apiFetch(url)
 
 function displayWeatherResults(data)
 {
+    if (!hasWeatherWidget) {
+        return;
+    }
+
     if (data.list) {
         let weatherDisplay = [];
 
@@ -50,7 +56,7 @@ function displayWeatherResults(data)
                 forecastDay = new Date(data.list[i].dt_txt);
             }
             
-            for (let j = i; j < i + 8; j++)
+            for (let j = i; j < i + 8 && j < data.list.length; j++)
             {
                 minTemps.push(data.list[j].main.temp_min);
                 maxTemps.push(data.list[j].main.temp_max);
@@ -106,5 +112,7 @@ function windchill(temp, vel)
     }
 }
 
-apiFetch(`${baseURL}weather${parameters}`)
-apiFetch(`${baseURL}forecast${parameters}`)
+if (hasWeatherWidget) {
+    apiFetch(`${baseURL}weather${parameters}`);
+    apiFetch(`${baseURL}forecast${parameters}`);
+}

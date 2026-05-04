@@ -22,9 +22,11 @@ let reviews = JSON.parse(localStorage.getItem('reviews')) ||  [
 let currentReviewIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    displayReview(currentReviewIndex);
-    generateDots();
-    updateDots(currentReviewIndex);
+    if (document.getElementById('testimonial')) {
+        displayReview(currentReviewIndex);
+        generateDots();
+        updateDots(currentReviewIndex);
+    }
 });
 
 function displayReview(index) {
@@ -80,32 +82,34 @@ function updateDots(index) {
     });
 }
 
-document.getElementById('review-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+const reviewForm = document.getElementById('review-form');
 
-    const name = document.getElementById('name').value.trim();
-    const company = document.getElementById('company').value.trim();
-    const rating = parseInt(document.getElementById('rating').value);
-    const comment = document.getElementById('comment').value.trim();
+if (reviewForm) {
+    reviewForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    if (name && company && rating && comment) {
-        const newReview = {
-            text: comment,
-            name: name,
-            rating: rating,
-            company: company
-        };
+        const name = document.getElementById('name').value.trim();
+        const company = document.getElementById('company').value.trim();
+        const rating = parseInt(document.getElementById('rating').value);
+        const comment = document.getElementById('comment').value.trim();
 
-        reviews.push(newReview);
-        localStorage.setItem('reviews', JSON.stringify(reviews));
-        currentReviewIndex = reviews.length - 1;
-        displayReview(currentReviewIndex);
-        generateDots(); // Rebuild the dots
-        updateDots(currentReviewIndex);
+        if (name && company && rating && comment) {
+            const newReview = {
+                text: comment,
+                name: name,
+                rating: rating,
+                company: company
+            };
 
-        // Reset form
-        document.getElementById('review-form').reset();
-    }
-    
-});
+            reviews.push(newReview);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            currentReviewIndex = reviews.length - 1;
+            displayReview(currentReviewIndex);
+            generateDots();
+            updateDots(currentReviewIndex);
+
+            reviewForm.reset();
+        }
+    });
+}
 

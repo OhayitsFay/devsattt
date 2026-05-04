@@ -1,13 +1,31 @@
 const year = new Date().getFullYear();
-document.querySelector('#year').textContent = year;
+const yearElement = document.querySelector('#year');
+if (yearElement) {
+    yearElement.textContent = year;
+}
 
 const lastModified = document.lastModified;
-document.querySelector('#lastModified').textContent = `Last Modified: ${lastModified}`;
+const lastModifiedElement = document.querySelector('#lastModified');
+if (lastModifiedElement) {
+    lastModifiedElement.textContent = `Last Modified: ${lastModified}`;
+}
 
 const darkBtn = document.querySelector('#darkBtn');
 
+function updateThemeButton(isDarkMode) {
+    if (!darkBtn) {
+        return;
+    }
+
+    const label = isDarkMode ? 'Switch to light mode' : 'Switch to dark mode';
+    darkBtn.setAttribute('role', 'button');
+    darkBtn.setAttribute('tabindex', '0');
+    darkBtn.setAttribute('aria-label', label);
+    darkBtn.setAttribute('title', label);
+}
+
 // Check if dark mode was previously enabled
-if (localStorage.getItem('darkMode') === 'enabled') {
+if (darkBtn && localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark');
     // Apply dark mode to all other elements
     document.querySelector('header').classList.add('dark');
@@ -22,8 +40,11 @@ if (localStorage.getItem('darkMode') === 'enabled') {
     });
 }
 
+updateThemeButton(document.body.classList.contains('dark'));
+
 // Toggle dark mode
-darkBtn.addEventListener('click', () => {
+if (darkBtn) {
+const toggleTheme = () => {
     const isDarkMode = document.body.classList.toggle('dark');
     
     // Toggle dark mode for other elements
@@ -44,5 +65,16 @@ darkBtn.addEventListener('click', () => {
     } else {
         localStorage.setItem('darkMode', 'disabled');
     }
+
+    updateThemeButton(isDarkMode);
+};
+
+darkBtn.addEventListener('click', toggleTheme);
+darkBtn.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleTheme();
+    }
 });
+}
 
